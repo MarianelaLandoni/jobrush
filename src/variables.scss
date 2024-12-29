@@ -1,0 +1,47 @@
+:root {
+  --primary: #2ECC71;
+  /* $primary: #e74694; */
+  --primary-hover: #28B463;
+  --primary-focus: #A9DFBF;
+  --white: #fff;
+
+  --line: #d1d5db;
+  --title: #0d131f;
+
+  --input-bg: #f9fafb;
+
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input, button, textarea {
+  font: inherit;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
