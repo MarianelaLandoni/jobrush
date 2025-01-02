@@ -1,15 +1,21 @@
 :root {
-  --primary: #2ECC71;
-  /* $primary: #e74694; */
-  --primary-hover: #28B463;
-  --primary-focus: #A9DFBF;
+  --primary: #e74694;
   --white: #fff;
+  --background: #f8f8f8;
+  --bg-disabled: #757575;
 
   --line: #d1d5db;
   --title: #0d131f;
+  --text-medium: ;
+
+  --placeholder: #C4C3C7;
 
   --input-bg: #f9fafb;
+  --gradient-bg: linear-gradient(to right, #e74694, #f56565, #e53e3e);
+  --gradient-hover-bg: linear-gradient(to right, #ee5aa4, #f77c7c, #ee5050);
+  --btn-focus: #F190BF;
 
+  --error: #E02424;
 }
 
 *,
@@ -25,6 +31,7 @@ html, body {
   height: 100%;
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
+  background-color: var(--background);
 }
 
 ul, ol {
@@ -41,7 +48,21 @@ input, button, textarea {
   border: none;
 }
 
+input{
+  -webkit-appearance: none;
+  border: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
 button {
   cursor: pointer;
+  outline: none;
+}
+
+button:focus-visible {
+  border: none;
 }
 
