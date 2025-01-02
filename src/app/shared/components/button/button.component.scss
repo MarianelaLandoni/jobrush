@@ -1,0 +1,31 @@
+.btn {
+  width: 100%;
+  color: var(--white);
+  background: var(--gradient-bg);
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1.125rem;
+  padding: 0.625rem 1.25rem;
+  text-align: center;
+  font-weight: 500;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin-top: 16px;
+
+  &:focus {
+    box-shadow: 0 0 8px 2px var(--btn-focus);
+    transform: scale(1.02);
+  }
+
+}
+
+.btn--hover {
+  background: var(--gradient-hover-bg);
+  transition: ease 0.3s;
+}
+
+.btn--disabled {
+  background: var(--bg-disabled);
+  color: var(--white);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
