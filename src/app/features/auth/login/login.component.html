@@ -1,0 +1,40 @@
+<section class="login">
+  <div class="login__side login__side--left">
+    <h2 class="login__title">Bienvenido de nuevo</h2>
+    <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <app-input
+        formControlName="email"
+        [controller]="emailControl"
+        label="Email"
+        id="email"
+        name="email"
+        placeholder="Escribe tu email">
+      </app-input>
+
+      <app-input
+        formControlName="password"
+        [controller]="passwordControl"
+        label="Contraseña"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Escribe tu contraseña">
+      </app-input>
+
+      @if(showErrorMsg){
+      <p class="login__error-msg"  role="alert">{{errorMsg}}</p>
+      }
+
+      <app-button
+        text="Iniciar sesión"
+        [disabled]="!loginForm.valid"
+        class="login__button">
+      </app-button>
+    </form>
+    <p class="login__question">¿No tienes cuenta? Regístrate <a class="login__question--link" href="#">aquí</a></p>
+  </div>
+
+  <div class="login__side login__side--right">
+
+  </div>
+</section>
