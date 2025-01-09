@@ -1,0 +1,43 @@
+<section class="register">
+
+  <div class="register__side register__side--left">
+
+  </div>
+  <div class="register__side register__side--right">
+    <h2 class="register__title">Registro</h2>
+    <form class="register__form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <app-input formControlName="userName" [controller]="userNameControl" label="Nombre de usuario" id="userName"
+        name="userName" placeholder="Escribe tu nombre de usuario">
+      </app-input>
+
+      <app-input formControlName="email" [controller]="emailControl" label="Email" id="email" name="email"
+        placeholder="Escribe tu email">
+      </app-input>
+
+      <app-input formControlName="password" [controller]="passwordControl" label="Contraseña" id="password"
+        name="password" type="password" placeholder="Escribe tu contraseña" [isPassword]="true">
+      </app-input>
+
+      <app-input formControlName="confirmPassword" [controller]="confirmPasswordControl" label="Repite la contraseña"
+        id="confirmPassword" name="confirmPassword" type="password" placeholder="Escribe tu contraseña" [isPassword]="true">
+      </app-input>
+
+      @if(registerForm.hasError('passwordMismatch') && confirmPasswordControl.touched){
+      <p class="register__error--msg" role="alert">
+        Las contraseñas deben coincidir.
+      </p>
+      }
+
+
+      @if(showErrorMsg){
+      <p class="register__error--msg" role="alert">{{errorMsg}}</p>
+      }
+
+      <app-button text="Regístrate" [disabled]="!registerForm.valid" class="register__button">
+      </app-button>
+    </form>
+    <p class="register__question">¿Ya tienes cuenta? <a class="register__question--link" [routerLink]="'/login'">Inicia sesión</a></p>
+  </div>
+
+</section>

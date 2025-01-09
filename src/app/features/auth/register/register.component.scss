@@ -1,0 +1,80 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__side--right {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  &__form {
+    width: 100%;
+    max-width: 375px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  &__error--msg {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--error);
+  }
+
+  &__button {
+    margin-top: 16px;
+  }
+
+  &__question {
+    font-size: 0.875rem;
+    color: var(--title);
+    margin-top: 8px;
+
+    &--link {
+      cursor: pointer;
+
+      &:hover {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+@media screen and (width > 768px) {
+  .register {
+    flex-direction: row;
+    justify-content: flex-start;
+
+    &__form {
+      padding: 0;
+    }
+
+    &__side {
+      flex: 1;
+    }
+
+    &__side--left {
+      height: 100vh;
+      padding: 24px;
+      background-color: var(--primary);
+    }
+  }
+
+}
