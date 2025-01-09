@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from 'core/services/auth.service';
 import { ButtonComponent } from 'shared/components/button/button.component';
 
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
 
   ngOnInit(): void {
     this.buildForm();
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   buildForm() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           localStorage.setItem('token-user', response.token);
+          this.router.navigate(['/inicio']);
         },
         error: (err) => {
           switch (err.status) {

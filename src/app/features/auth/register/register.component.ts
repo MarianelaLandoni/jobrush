@@ -10,7 +10,7 @@ import { AuthService } from 'core/services/auth.service';
 import { ButtonComponent } from 'shared/components/button/button.component';
 import { InputComponent } from 'shared/components/input/input.component';
 import { passwordMatchValidator } from '../validators/password-match.validator';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -26,6 +26,8 @@ export class RegisterComponent {
 
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
+
 
   ngOnInit(): void {
     this.buildForm();
@@ -48,6 +50,7 @@ export class RegisterComponent {
       this.authService.login(this.registerForm.value).subscribe({
         next: (response) => {
           localStorage.setItem('token-user', response.token);
+          this.router.navigate(['/inicio']);
         },
         error: (err) => {
           switch (err.status) {
