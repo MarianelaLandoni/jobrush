@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { DashboardComponent } from 'features/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -15,5 +16,23 @@ export const routes: Routes = [
         (m) => m.RegisterComponent
       ),
   },
+  {
+    path: '',
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'inicio',
+        loadComponent: () =>
+          import('./features/dashboard/home/home.component').then((m) => m.HomeComponent),
+      },
+      {
+        path: 'tableros',
+        loadComponent: () =>
+          import('./features/dashboard/boards/boards.component').then((m) => m.BoardsComponent),
+      },
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+    ],
+  },
+
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
