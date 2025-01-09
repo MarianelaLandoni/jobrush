@@ -1,12 +1,16 @@
 :root {
-  --primary: #e74694;
+  // --primary: #e74694;
+  --primary: #D72F59;
+  --primary-bg: #f7b9d6;
   --white: #fff;
   --background: #f8f8f8;
   --bg-disabled: #757575;
 
   --line: #d1d5db;
   --title: #0d131f;
-  --text-medium: ;
+  --dark-text: #202121;
+  --text-dark-medium: #535053;
+  --text-medium: #a5a5a7;
 
   --placeholder: #C4C3C7;
 
@@ -14,6 +18,8 @@
   --gradient-bg: linear-gradient(to right, #e74694, #f56565, #e53e3e);
   --gradient-hover-bg: linear-gradient(to right, #ee5aa4, #f77c7c, #ee5050);
   --btn-focus: #F190BF;
+
+  --border-line: #cbcaca;
 
   --error: #E02424;
 }
@@ -34,9 +40,12 @@ html, body {
   background-color: var(--background);
 }
 
-ul, ol {
+ul, ol, li {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
 
 a {
   text-decoration: none;
