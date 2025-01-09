@@ -1,0 +1,16 @@
+.container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 246px 1fr;
+  transition: grid-template-columns 0.4s ease;
+
+  &.collapsed {
+    transition: grid-template-columns 0.4s ease;
+    grid-template-columns: 85px 1fr;
+  }
+
+  .main-content {
+    padding: 24px;
+    overflow-y: auto;
+  }
+}
