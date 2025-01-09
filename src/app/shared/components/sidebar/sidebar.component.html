@@ -1,0 +1,47 @@
+<aside class="sidebar" [ngClass]="{collapsed: isCollapsed}">
+  <div>
+    <section class="sidebar__top" [ngClass]="{collapsed: isCollapsed}">
+      <div class="sidebar__logo">
+        <!-- <img src="" alt=""> -->
+        <div class="circle"></div>
+        @if(!isCollapsed){
+        <h2 class="title">JobRush</h2>
+        }
+      </div>
+
+      <app-button class="sidebar__toggle" [iconButton]="true" iconSrc="/icons/arrow-collapse.svg" iconAlt="flecha para colpasar el menu"
+        [ngClass]="{collapsed: isCollapsed}" (click)="toggleSidebar()"></app-button>
+
+    </section>
+
+    <ul class="sidebar__list" [ngClass]="{collapsed: isCollapsed}">
+      @for (item of menuItems; track $index) {
+      <li (mouseover)="hoveredItem = item.route" (mouseleave)="hoveredItem = null">
+        <a class="sidebar__link" [routerLink]="item.route" routerLinkActive="sidebar__link--active"
+          [ngClass]="{'sidebar__link--hover': hoveredItem === item.route}">
+
+          <img [src]="isActive(item.route) ? item.iconActive : item.icon" [alt]="item.label" class="sidebar__icon">
+
+          @if(!isCollapsed){
+          <span class="sidebar__text" [ngClass]="{'sidebar__text--hover': hoveredItem === item.route}"
+            routerLinkActive="sidebar__text--active">
+            {{ item.label }}
+          </span>
+          }
+        </a>
+      </li>
+      }
+    </ul>
+  </div>
+
+
+  <!-- TODO: change with a component -->
+  <section class="sidebar__bottom" [ngClass]="{collapsed: isCollapsed}">
+    <a class="sidebar__link">
+      <img src="/icons/profile.svg" alt="Perfil" class="sidebar__icon">
+      @if(!isCollapsed){
+      <span class="sidebar__text">Perfil</span>
+      }
+    </a>
+  </section>
+</aside>
