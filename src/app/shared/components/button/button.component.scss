@@ -21,11 +21,16 @@
 .btn--hover {
   background: var(--gradient-hover-bg);
   transition: ease 0.3s;
+
 }
 
 .btn--disabled {
   background: var(--bg-disabled);
   color: var(--white);
-  cursor: not-allowed;
   opacity: 0.6;
+
+  &:focus {
+    box-shadow: none;
+    transform: none;
+  }
 }

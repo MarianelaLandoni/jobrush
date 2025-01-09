@@ -1,1 +1,1 @@
-<button class="btn" [ngClass]="{'btn--disabled': disabled, 'btn--hover':  isHover && !disabled}" [disabled]="disabled" (mouseenter)="isHover = true" (mouseleave)="isHover = false">{{text}}</button>
+<button class="btn" [ngClass]="{'btn--disabled': disabled, 'btn--hover':  isHover && !disabled}" (mouseenter)="isHover = true" (mouseleave)="isHover = false">{{text}}</button>
