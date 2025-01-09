@@ -1,19 +1,25 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { AuthService } from 'core/services/auth.service';
 import { ButtonComponent } from 'shared/components/button/button.component';
 
 import { InputComponent } from 'shared/components/input/input.component';
 
-
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, InputComponent, ButtonComponent],
+  imports: [ReactiveFormsModule, InputComponent, ButtonComponent, RouterModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showErrorMsg = false;
   errorMsg = '';
@@ -21,15 +27,14 @@ export class LoginComponent implements OnInit{
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
 
-
   ngOnInit(): void {
     this.buildForm();
   }
 
-  buildForm(){
+  buildForm() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
     });
   }
 
@@ -42,20 +47,25 @@ export class LoginComponent implements OnInit{
         error: (err) => {
           switch (err.status) {
             case 401:
-              this.errorMsg = "Email o contraseña incorrectos. Prueba otra vez.";
+              this.errorMsg =
+                'Email o contraseña incorrectos. Prueba otra vez.';
               break;
             case 404:
-              this.errorMsg = "Usuario no encontrado. Comprueba que el correo está bien.";
+              this.errorMsg =
+                'Usuario no encontrado. Comprueba que el correo está bien.';
               break;
             case 500:
-              this.errorMsg = "Error del servidor. Prueba más tarde, por favor.";
+              this.errorMsg =
+                'Error del servidor. Prueba más tarde, por favor.';
               break;
             default:
-              this.errorMsg = "Ha ocurrido un error";
+              this.errorMsg = 'Ha ocurrido un error';
           }
           this.showErrorMsg = true;
-        }
+        },
       });
+    } else {
+      this.loginForm.markAllAsTouched();
     }
   }
 
