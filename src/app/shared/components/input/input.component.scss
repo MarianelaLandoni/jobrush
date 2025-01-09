@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  position: relative;
+
 
   &__label {
     font-size: 1rem;
@@ -12,6 +14,7 @@
       color: var(--error);
     }
   }
+
 
   &__input {
     font-size: 1rem;
@@ -38,6 +41,15 @@
     &.invalid {
       outline: 1px solid var(--error);
     }
+  }
+
+  &__input--icon{
+    position: absolute;
+    right: 10px;
+    top:42px;
+    width: 24px;
+    height: 26px;
+    cursor: pointer;
   }
 
   &__input--error{

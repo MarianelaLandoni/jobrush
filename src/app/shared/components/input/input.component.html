@@ -1,7 +1,15 @@
 <div class="input-container">
   <label class="input-container__label" [ngClass]="{'valid': isValid, 'invalid': isInvalid}" [for]="id">{{label}}</label>
+
   <input class="input-container__input" [ngClass]="{'valid': isValid, 'invalid': isInvalid}" [type]="type" [id]="id" [name]="name" [placeholder]="placeholder"
   [value]="value()" (input)="onInputChange($event)" (blur)="onTouched()" />
+
+  @if(type === 'password'){
+    <img class="input-container__input--icon" src="icons/eye.svg" alt="Mostrar contraseña" (click)="togglePassword()">
+  }
+  @if(type === 'text' && isPassword){
+    <img class="input-container__input--icon" src="icons/eye-off.svg" alt="Ocultar contraseña" (click)="togglePassword()">
+  }
 
   @if(hasError('required')){
     <p class="input-container__input--error">Este campo es requerido.</p>
@@ -9,6 +17,10 @@
 
   @if(hasError('email')){
     <p class="input-container__input--error">Por favor, ingresa un email válido.</p>
+  }
+
+  @if(hasError('minlength')){
+    <p class="input-container__input--error">Debe contener al menos 8 caracteres</p>
   }
 
 </div>

@@ -27,6 +27,7 @@ export class InputComponent {
   @Input() id = '';
   @Input() name = '';
   @Input() placeholder = 'Placeholder';
+  @Input() isPassword = false;
   @Input() controller!: FormControl;
 
   value = signal<string>('');
@@ -75,5 +76,9 @@ export class InputComponent {
 
   get isInvalid() {
     return this.controller?.invalid && this.controller?.touched;
+  }
+
+  togglePassword(): void {
+    this.type = this.type === 'password' ? 'text' : 'password';
   }
 }
