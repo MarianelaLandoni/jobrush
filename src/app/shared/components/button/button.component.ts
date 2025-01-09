@@ -11,6 +11,11 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
   @Input() text = 'Botón';
   @Input() disabled = false;
+  @Input() iconButton = false;
+  @Input() iconSrc = '';
+  @Input() iconAlt = '';
+
+
 
   isHover = false;
 }
