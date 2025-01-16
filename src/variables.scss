@@ -1,6 +1,7 @@
 :root {
   --primary: #D72F59;
   --primary-bg: #f7b9d6;
+  //--secondary:#814756;
   --white: #fff;
   --background: #f8f8f8;
   --bg-disabled: #757575;
@@ -19,8 +20,13 @@
   --btn-focus: #F190BF;
 
   --border-line: #cbcaca;
+  --tooltip-bg: #1f2937;
 
   --error: #E02424;
+
+  --shadow-black-10: rgba(0, 0, 0, 0.1);
+  --shadow-black-6: rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 4px 6px var(--shadow-black-10), 0 2px 4px var(--shadow-black-6);
 }
 
 *,
