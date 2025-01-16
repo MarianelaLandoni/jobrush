@@ -10,6 +10,7 @@ import {
   CdkDrag,
   CdkDropList,
   CdkDragMove,
+  CdkDragPlaceholder,
 } from '@angular/cdk/drag-drop';
 import { ButtonComponent } from 'shared/components/button/button.component';
 import { Column } from 'core/models/board-column.model';
@@ -20,7 +21,7 @@ import { Application } from 'core/models/application.model';
 @Component({
   selector: 'app-board-detail',
   standalone: true,
-  imports: [CommonModule, CdkDropList, CdkDrag, ButtonComponent],
+  imports: [CommonModule, CdkDropList, CdkDrag, CdkDragPlaceholder, ButtonComponent],
   templateUrl: './board-detail.component.html',
   styleUrl: './board-detail.component.scss',
 })

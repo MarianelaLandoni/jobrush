@@ -19,6 +19,7 @@
 
         @for (application of column.applications; track $index) {
         <div class="board__list-box" cdkDrag (cdkDragMoved)="onDragMoved($event)">
+          <div class="board__list-drag-placeholder" *cdkDragPlaceholder></div>
           <h4 class="board__list-box-title">{{ application.title }}</h4>
           <div class="board__list-box-wrapper">
             <img class="board__list-box-wrapper-image" [src]="application.image_url" alt="{{ application.company }}">
