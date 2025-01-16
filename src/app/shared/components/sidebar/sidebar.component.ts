@@ -2,12 +2,13 @@ import { NgClass } from '@angular/common';
 import { Component, inject, output } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ButtonComponent } from '../button/button.component';
+import { TooltipComponent } from '../tooltip/tooltip.component';
 
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgClass, RouterModule, ButtonComponent],
+  imports: [NgClass, RouterModule, ButtonComponent, TooltipComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

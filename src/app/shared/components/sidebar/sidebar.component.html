@@ -18,7 +18,7 @@
 
     <ul class="sidebar__list" [ngClass]="{collapsed: isCollapsed}">
       @for (item of menuItems; track $index) {
-      <li (mouseover)="hoveredItem = item.route" (mouseleave)="hoveredItem = null">
+      <li class="sidebar__item" (mouseover)="hoveredItem = item.route" (mouseleave)="hoveredItem = null">
         <a class="sidebar__link" [routerLink]="item.route" routerLinkActive="sidebar__link--active"
           [ngClass]="{'sidebar__link--hover': hoveredItem === item.route}">
 
@@ -31,13 +31,8 @@
           </span>
           }
         </a>
-        <!-- Tooltip -->
-        @if(isCollapsed && hoveredItem === item.route){
-        <div class="tooltip">
-          {{ item.label }}
-        </div>
-        }
-
+        <app-tooltip class="sidebar__tooltip" [text]="item.label"
+          [isActive]="isCollapsed && hoveredItem === item.route"></app-tooltip>
       </li>
       }
     </ul>
