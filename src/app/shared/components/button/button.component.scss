@@ -1,5 +1,9 @@
 .btn {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   color: var(--white);
   background: var(--gradient-bg);
   border-radius: 0.5rem;
@@ -24,9 +28,6 @@
     background: transparent;
     padding: 0;
 
-    &:hover {
-      background-color: var(--background);
-    }
 
     &:focus {
       box-shadow: none;
@@ -39,7 +40,6 @@
 .btn--hover {
   background: var(--gradient-hover-bg);
   transition: ease 0.3s;
-
 }
 
 .btn--disabled {
@@ -52,3 +52,16 @@
     transform: none;
   }
 }
+
+.btn--small {
+  height: 40px;
+  background: var(--primary);
+  font-size: 0.875rem;
+  padding: 0 12px;
+
+  &:focus {
+    box-shadow: 0 0 8px 2px var(--btn-focus);
+    transform: scale(1.02);
+  }
+}
+

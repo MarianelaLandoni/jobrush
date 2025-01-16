@@ -9,11 +9,14 @@ import { Component, Input } from '@angular/core';
   styleUrl: './button.component.scss',
 })
 export class ButtonComponent {
-  @Input() text = 'Botón';
+  @Input() text = '';
   @Input() disabled = false;
   @Input() iconButton = false;
   @Input() iconSrc = '';
   @Input() iconAlt = '';
+  @Input() isSmall = false;
+  @Input() isLeftIcon = false;
+  @Input() leftIconSrc = '';
 
 
 
