@@ -1,0 +1,37 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 275px;
+  gap: 12px;
+  background-color: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--shadow-card);
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    color: var(--dark-text);
+    text-overflow: ellipsis;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &__btn {
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+
+    &.scale {
+      transform: scale(1.05);
+
+    }
+  }
+
+}
