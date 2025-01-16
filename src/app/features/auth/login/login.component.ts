@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from 'core/services/auth.service';
+import { AuthService } from 'core/services/auth-service/auth.service';
 import { ButtonComponent } from 'shared/components/button/button.component';
 
 import { InputComponent } from 'shared/components/input/input.component';

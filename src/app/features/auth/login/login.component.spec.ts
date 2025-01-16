@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
-import { AuthService } from 'core/services/auth.service';
+import { AuthService } from 'core/services/auth-service/auth.service';
 
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
