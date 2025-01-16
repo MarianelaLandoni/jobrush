@@ -2,15 +2,17 @@
   <div>
     <section class="sidebar__top" [ngClass]="{collapsed: isCollapsed}">
       <div class="sidebar__logo">
+        @if(!isCollapsed){
         <!-- <img src="" alt=""> -->
         <div class="circle"></div>
-        @if(!isCollapsed){
+
         <h2 class="title">JobRush</h2>
         }
       </div>
 
-      <app-button class="sidebar__toggle" [iconButton]="true" iconSrc="/icons/arrow-collapse.svg" iconAlt="flecha para colpasar el menu"
-        [ngClass]="{collapsed: isCollapsed}" (click)="toggleSidebar()"></app-button>
+      <app-button class="sidebar__toggle" [iconButton]="true" iconSrc="/icons/arrow-collapse.svg"
+        iconAlt="flecha para colpasar el menu" [ngClass]="{collapsed: isCollapsed}"
+        (click)="toggleSidebar()"></app-button>
 
     </section>
 
@@ -29,6 +31,13 @@
           </span>
           }
         </a>
+        <!-- Tooltip -->
+        @if(isCollapsed && hoveredItem === item.route){
+        <div class="tooltip">
+          {{ item.label }}
+        </div>
+        }
+
       </li>
       }
     </ul>

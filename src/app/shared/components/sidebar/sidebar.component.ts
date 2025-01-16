@@ -14,7 +14,7 @@ import { ButtonComponent } from '../button/button.component';
 export class SidebarComponent {
   isCollapsed = false;
   hoveredItem: string | null = null;
-  
+
   collapseSidebarEvent = output<boolean>();
 
   router = inject(Router);
@@ -32,7 +32,7 @@ export class SidebarComponent {
 
   isActive(route: string): boolean {
     return this.router.isActive(route, {
-      paths: 'exact',
+      paths: 'subset',
       queryParams: 'ignored',
       matrixParams: 'ignored',
       fragment: 'ignored'});

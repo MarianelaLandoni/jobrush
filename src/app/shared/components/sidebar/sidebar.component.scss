@@ -19,6 +19,7 @@
     margin-bottom: 40px;
 
     &.collapsed {
+      justify-content: center;
       padding: 0;
     }
   }
@@ -105,4 +106,41 @@
       margin: 0 auto;
     }
   }
+  .sidebar__list li{
+    position: relative;
+  }
+  .tooltip {
+    position: absolute;
+    left: 115%;
+    top: 4px;
+    background-color: #1f2937; // Fondo oscuro
+    color: #ffffff; // Texto blanco
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    white-space: nowrap;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -20px;
+      transform: translateY(-50%);
+      border-width: 12px;
+      border-style: solid;
+      border-color: transparent #1f2937 transparent transparent;
+    }
+  }
+
+  .sidebar__list li:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
 }
