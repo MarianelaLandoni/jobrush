@@ -6,11 +6,10 @@
 
   &.collapsed {
     transition: grid-template-columns 0.4s ease;
-    grid-template-columns: 85px 1fr;
+    grid-template-columns: 65px 1fr;
   }
 
   .main-content {
-    padding: 24px;
     overflow-y: auto;
   }
 }
