@@ -30,6 +30,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/dashboard/boards/boards.component').then((m) => m.BoardsComponent),
       },
+      {
+        path: 'tableros/:id', 
+        loadComponent: () =>
+          import('./features/dashboard/boards/board-detail/board-detail.component').then(
+            (m) => m.BoardDetailComponent
+          ),
+      },
       { path: '', redirectTo: 'inicio', pathMatch: 'full' },
     ],
   },

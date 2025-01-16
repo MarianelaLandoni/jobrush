@@ -1,0 +1,33 @@
+<section class="board">
+
+  <section class="board__top">
+    <app-button class="board__top-arrow" [iconButton]="true" iconSrc="/icons/arrow-back.svg" iconAlt="Ir hacia atrás" (click)="goBack()"></app-button>
+    <h2 class="board__top-title">{{board?.name}}</h2>
+  </section>
+
+  <section cdkDropListGroup class="board__group">
+    @for (column of columns; track $index) {
+    <div class="board__container">
+      <div cdkDropList [id]="column.id" [cdkDropListData]="column.applications"
+        [cdkDropListConnectedTo]="connectedColumns" class="board__list" (cdkDropListDropped)="drop($event)">
+
+        <div class="board__list-top">
+          <img [src]="column.icon" alt="{{ column.name }}">
+          <h2 class="board__list-title">{{ column.name }}</h2>
+          <img class="board__list-add-icon" src="/icons/plus.svg" alt="Añadir postulación a la columna {{column.name}}">
+        </div>
+
+        @for (application of column.applications; track $index) {
+        <div class="board__list-box" cdkDrag (cdkDragMoved)="onDragMoved($event)">
+          <h4 class="board__list-box-title">{{ application.title }}</h4>
+          <div class="board__list-box-wrapper">
+            <img class="board__list-box-wrapper-image" [src]="application.image_url" alt="{{ application.company }}">
+            <p class="board__list-box-wrapper-company">{{ application.company }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    }
+  </section>
+</section>
