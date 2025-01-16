@@ -18,4 +18,8 @@ export class AuthService {
   getAuthToken() {
     return localStorage.getItem('token-user') || '';
   }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token-user');
+  }
 }

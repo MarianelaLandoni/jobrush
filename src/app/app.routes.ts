@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from 'core/guards/auth.guard';
 import { DashboardComponent } from 'features/dashboard/dashboard.component';
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'inicio',
@@ -31,7 +33,7 @@ export const routes: Routes = [
           import('./features/dashboard/boards/boards.component').then((m) => m.BoardsComponent),
       },
       {
-        path: 'tableros/:id', 
+        path: 'tableros/:id',
         loadComponent: () =>
           import('./features/dashboard/boards/board-detail/board-detail.component').then(
             (m) => m.BoardDetailComponent
