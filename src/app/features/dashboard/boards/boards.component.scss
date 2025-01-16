@@ -1,0 +1,25 @@
+.boards {
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    padding: 24px;
+  }
+
+  &-title {
+    font-size: 1.5rem;
+    color: var(--dark-text);
+  }
+
+  &__cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 32px 24px 18px;
+  }
+
+}

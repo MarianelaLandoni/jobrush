@@ -1,1 +1,15 @@
-<p>boards works!</p>
+<div class="boards">
+
+  <header class="boards__top">
+    <h2 class="boards__top-title">Mis tableros</h2>
+    <app-button text="Nuevo tablero" [isSmall]="true" [isLeftIcon]="true"
+      leftIconSrc="/icons/plus-white.svg"></app-button>
+  </header>
+
+  <section class="boards__cards">
+    @for (board of boards; track $index) {
+    <app-card-button [title]="board.name" (buttonClickEvent)="goToBoard(board.id)"></app-card-button>
+    }
+  </section>
+
+</div>
