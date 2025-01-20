@@ -1,0 +1,42 @@
+<section class="application">
+  <h2 class="application__title">Añadir postulación</h2>
+  <form class="application__form" [formGroup]="applicationForm" (ngSubmit)="onSubmit()">
+    <app-input formControlName="title" [controller]="titleControl" label="Puesto" id="title" name="title"
+      placeholder="Escribe el puesto de la oferta" [isSmall]="true">
+    </app-input>
+
+    <app-input formControlName="company" [controller]="companyControl" label="Empresa" id="company" name="company"
+      placeholder="Escribe el nombre de la empresa" [isSmall]="true">
+    </app-input>
+
+    <app-input formControlName="location" [controller]="locationControl" label="Localización" id="location"
+      name="location" placeholder="Madrid, España" [isSmall]="true">
+    </app-input>
+
+
+    <!--
+   <app-input formControlName="imageUrl" [controller]="imageUrlControl" label="Logo de la empresa" id="imageUrl" name="imageUrl"
+    placeholder="Añade el logo de la empresa (url)" [isSmall]="true">
+  </app-input>
+
+    <app-input formControlName="url" [controller]="urlControl" label="Url de la oferta" id="url" name="url"
+      placeholder="Escribe la url de la oferta" [isSmall]="true">
+    </app-input>
+
+    <app-input formControlName="description" [controller]="descriptionControl" label="Descripción" id="description" name="description"
+      placeholder="Escribe el nombre de la empresa" [isSmall]="true">
+    </app-input> -->
+
+    <!-- <app-input formControlName="company" [controller]="companyControl" label="Empresa" id="company" name="company"
+      placeholder="Escribe el nombre de la empresa">
+    </app-input> -->
+
+
+    @if(showErrorMsg){
+    <p class="application__error-msg" role="alert">{{errorMsg}}</p>
+    }
+
+    <app-button class="application__button" text="Añadir postulación" [disabled]="!applicationForm.valid"  [isSmall]="true">
+    </app-button>
+  </form>
+</section>
