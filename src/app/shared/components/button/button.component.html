@@ -1,4 +1,4 @@
-<button class="btn" [ngClass]="{'btn--disabled': disabled, 'btn--hover':  isHover && !disabled, icon: iconButton, 'btn--small': isSmall}"
+<button class="btn" [ngClass]="{'btn--disabled': disabled, 'btn--hover':  isHover && !disabled, icon: iconButton, 'btn--small': isSmall, 'btn-outline': isOutline}"
   (mouseenter)="isHover = true" (mouseleave)="isHover = false">
 
   @if(iconButton){

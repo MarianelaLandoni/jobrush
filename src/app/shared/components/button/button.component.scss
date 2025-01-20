@@ -19,7 +19,7 @@
     transform: scale(1.02);
   }
 
-  &.icon{
+  &.icon {
     width: 32px;
     height: 32px;
     display: grid;
@@ -59,9 +59,29 @@
   font-size: 0.875rem;
   padding: 0 12px;
 
+  &:hover {
+    background: #E65378;
+  }
+
   &:focus {
     box-shadow: 0 0 8px 2px var(--btn-focus);
     transform: scale(1.02);
   }
 }
 
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--dark-text);
+
+  &:hover {
+    background: transparent;
+    box-shadow: 0 0 8px 2px var(--line);
+  }
+
+  &:focus {
+    box-shadow: none;
+    transform: scale(1.02);
+  }
+
+}
