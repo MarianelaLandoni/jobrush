@@ -6,15 +6,15 @@
   </section>
 
   <section cdkDropListGroup class="board__group">
-    @for (column of columns; track $index) {
+    @for (column of columns(); track $index) {
     <div class="board__container">
       <div cdkDropList [id]="column.id" [cdkDropListData]="column.applications"
-        [cdkDropListConnectedTo]="connectedColumns" class="board__list" (cdkDropListDropped)="drop($event)">
+        [cdkDropListConnectedTo]="connectedColumns()" class="board__list" (cdkDropListDropped)="drop($event)">
 
         <div class="board__list-top">
           <img [src]="column.icon" alt="{{ column.name }}">
           <h2 class="board__list-title">{{ column.name }}</h2>
-          <img class="board__list-add-icon" src="/icons/plus.svg" alt="Añadir postulación a la columna {{column.name}}">
+          <img class="board__list-add-icon" src="/icons/plus.svg" alt="Añadir postulación a la columna {{column.name}}" (click)="openApplicationModal(column.id)">
         </div>
 
         @for (application of column.applications; track $index) {
@@ -22,9 +22,12 @@
           <div class="board__list-drag-placeholder" *cdkDragPlaceholder></div>
           <h4 class="board__list-box-title">{{ application.title }}</h4>
           <div class="board__list-box-wrapper">
-            <img class="board__list-box-wrapper-image" [src]="application.image_url" alt="{{ application.company }}">
+            <img class="board__list-box-wrapper-image" [src]="application.image_url || '/icons/company.svg'" alt="{{ application.company }}">
             <p class="board__list-box-wrapper-company">{{ application.company }}</p>
           </div>
+          <!-- @if(application.isHover){ -->
+            <img class="board__list-box-wrapper-delete" src="/icons/delete.svg" alt="Eliminar postulación" (click)="openConfirmationModal(application.id)">
+          <!-- } -->
         </div>
         }
       </div>

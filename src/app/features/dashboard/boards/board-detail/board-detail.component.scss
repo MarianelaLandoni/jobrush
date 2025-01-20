@@ -72,9 +72,17 @@
       border-radius: 12px;
       padding: 12px;
       cursor: pointer;
+      position: relative;
 
-      &:active{
+      &:active {
         cursor: grabbing;
+      }
+
+      &:hover {
+        .board__list-box-wrapper-delete {
+          opacity: 1;
+          pointer-events: auto;
+        }
       }
 
       &-title {
@@ -97,10 +105,20 @@
           font-size: 0.75rem;
           color: var(--text-dark-medium);
         }
+
+        &-delete {
+          width: 18px;
+          position: absolute;
+          bottom: 12px;
+          right: 12px;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
       }
     }
 
-    &-drag-placeholder{
+    &-drag-placeholder {
       border: 2px dotted var(--line);
       border-radius: 12px;
       min-height: 70px;

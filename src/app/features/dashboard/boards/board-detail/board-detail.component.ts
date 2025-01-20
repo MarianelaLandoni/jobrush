@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Board } from 'core/models/board.model';
 import { BoardService } from 'core/services/boards-service/board.service';
@@ -15,88 +15,51 @@ import {
 import { ButtonComponent } from 'shared/components/button/button.component';
 import { Column } from 'core/models/board-column.model';
 import { Application } from 'core/models/application.model';
-
-
+import { Dialog } from '@angular/cdk/dialog';
+import { AddApplicationFormComponent } from '../applications/add-application-form/add-application-form.component';
+import { ApplicationService } from 'core/services/application-service/application.service';
+import { ConfirmModalComponent } from 'shared/components/modals/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-board-detail',
   standalone: true,
-  imports: [CommonModule, CdkDropList, CdkDrag, CdkDragPlaceholder, ButtonComponent],
+  imports: [
+    CommonModule,
+    CdkDropList,
+    CdkDrag,
+    CdkDragPlaceholder,
+    ButtonComponent,
+  ],
   templateUrl: './board-detail.component.html',
   styleUrl: './board-detail.component.scss',
 })
-
 export class BoardDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private boardService = inject(BoardService);
+  private applicationService = inject(ApplicationService);
+  private dialog = inject(Dialog);
 
-  board: Board | null = null;
+  board!: Board;
 
-  connectedColumns: string[] = [
-    'favorites',
-    'applied',
-    'interview',
-    'offer',
-    'rejected',
-  ];
-  columns: Column[] = [
+  columns = signal<Column[]>([
     {
       id: 'favorites',
       name: 'Favoritos',
       icon: '/icons/star.svg',
-      applications: [
-        {
-          id: 1,
-          title: 'Frontend Developer',
-          company: 'Company A',
-          status: 'favorites',
-          created_at: '2024-01-15T10:00:00Z',
-          image_url:
-            'https://media.licdn.com/dms/image/v2/C560BAQEloqEBLHUukg/company-logo_100_100/company-logo_100_100/0/1630631081923/devoteam_logo?e=1744848000&v=beta&t=y_yQw-NkB1n-YWV_yoIYFNcz06b_s1uri4wJAgoXZNg',
-        },
-        {
-          id: 2,
-          title: 'Backend Developer',
-          company: 'Company B',
-          status: 'favorites',
-          created_at: '2024-01-14T10:00:00Z',
-          image_url:
-            'https://media.licdn.com/dms/image/v2/C560BAQEloqEBLHUukg/company-logo_100_100/company-logo_100_100/0/1630631081923/devoteam_logo?e=1744848000&v=beta&t=y_yQw-NkB1n-YWV_yoIYFNcz06b_s1uri4wJAgoXZNg',
-        },
-      ],
+      applications: [],
     },
     {
       id: 'applied',
       name: 'Aplicados',
       icon: '/icons/document-check.svg',
-      applications: [
-        {
-          id: 3,
-          title: 'Product Manager',
-          company: 'Company C',
-          status: 'applied',
-          created_at: '2024-01-10T10:00:00Z',
-          image_url:
-            'https://media.licdn.com/dms/image/v2/C560BAQEloqEBLHUukg/company-logo_100_100/company-logo_100_100/0/1630631081923/devoteam_logo?e=1744848000&v=beta&t=y_yQw-NkB1n-YWV_yoIYFNcz06b_s1uri4wJAgoXZNg',
-        },
-      ],
+      applications: [],
     },
     {
       id: 'interview',
       name: 'En entrevistas',
       icon: '/icons/interview.svg',
-      applications: [
-        {
-          id: 4,
-          title: 'UX Designer',
-          company: 'Company D',
-          status: 'interview',
-          created_at: '2024-01-08T10:00:00Z',
-          image_url:
-            'https://media.licdn.com/dms/image/v2/C560BAQEloqEBLHUukg/company-logo_100_100/company-logo_100_100/0/1630631081923/devoteam_logo?e=1744848000&v=beta&t=y_yQw-NkB1n-YWV_yoIYFNcz06b_s1uri4wJAgoXZNg',
-        },
-      ],
+      applications: [],
     },
     {
       id: 'offer',
@@ -108,10 +71,11 @@ export class BoardDetailComponent implements OnInit {
       id: 'rejected',
       name: 'Rechazado',
       icon: '/icons/rejected.svg',
-
       applications: [],
     },
-  ];
+  ]);
+
+  connectedColumns = computed(() => this.columns().map((column) => column.id));
 
   ngOnInit(): void {
     const boardId = this.route.snapshot.paramMap.get('id');
@@ -126,11 +90,36 @@ export class BoardDetailComponent implements OnInit {
     this.boardService.getBoardById(id).subscribe({
       next: (data) => {
         this.board = data;
+        this.getApplications();
       },
       error: (err) => {
         console.error('Error al cargar el tablero:', err);
       },
     });
+  }
+
+  getApplications(): void {
+    this.applicationService.getApplicationsByBoard(this.board?.id).subscribe({
+      next: (applications) => {
+        this.organizeApplicationsByStatus(applications);
+      },
+      error: (err) => {
+        console.error('Error al cargar las postulaciones:', err);
+      },
+    });
+  }
+
+  organizeApplicationsByStatus(applications: Application[]): void {
+    applications.forEach((application) => {
+      const targetColumn = this.columns().find(
+        (column) => column.id === application.status
+      );
+      if (targetColumn) {
+        targetColumn.applications.push(application);
+      }
+    });
+
+    this.columns.set([...this.columns()]);
   }
 
   drop(event: CdkDragDrop<Application[]>): void {
@@ -147,7 +136,22 @@ export class BoardDetailComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+
+      this.updateApplicationStatus(event);
     }
+  }
+
+  updateApplicationStatus(event: CdkDragDrop<Application[]>) {
+    const applicationData = event.container.data[event.currentIndex];
+    const currentColumn = event.container.id;
+    applicationData.status = currentColumn;
+
+    this.applicationService.updateApplication(applicationData).subscribe({
+      next: () => {},
+      error: (err) => {
+        console.error('Error al actualizar la postulación:', err);
+      },
+    });
   }
 
   onDragMoved(event: CdkDragMove) {
@@ -162,6 +166,76 @@ export class BoardDetailComponent implements OnInit {
         boardGroup.scrollLeft += 20;
       }
     }
+  }
+
+  openApplicationModal(columnId: string) {
+    const dialogRef = this.dialog.open(AddApplicationFormComponent, {
+      minWidth: '375px',
+      data: {
+        boardId: this.board?.id,
+        status: columnId,
+      },
+    });
+
+    dialogRef.closed.subscribe((newApplication: any) => {
+      if (newApplication) {
+        const updatedColumns = this.columns().map((column) => {
+          if (column.id === columnId) {
+            return {
+              ...column,
+              applications: [...column.applications, newApplication],
+            };
+          }
+          return column;
+        });
+
+        this.columns.set(updatedColumns);
+      } else {
+        console.log('No se recibió la nueva aplicación.');
+      }
+    });
+  }
+
+  openConfirmationModal(applicationId: number) {
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      maxWidth: '400px',
+      data: {
+        title: '¿Estás seguro?',
+        description:
+          'Esta acción no se puede deshacer. Si eliminas tu postulación, no podrás volver a recuperarla.',
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar',
+        confirmAction: 'delete',
+      },
+    });
+
+    dialogRef.closed.subscribe((result) => {
+      if (result === 'delete') {
+        this.deleteApplication(applicationId);
+      } else {
+        console.log('Action canceled or other action.');
+      }
+    });
+  }
+
+  deleteApplication(applicationId: number) {
+    this.applicationService
+      .deleteApplication(this.board.id, applicationId)
+      .subscribe({
+        next: () => {
+          const updatedColumns = this.columns().map((column) => ({
+            ...column,
+            applications: column.applications.filter(
+              (application) => application.id !== applicationId
+            ),
+          }));
+
+          this.columns.set(updatedColumns);
+        },
+        error: (err) => {
+          console.error('Error al eliminar la postulación:', err);
+        },
+      });
   }
 
   goBack() {
