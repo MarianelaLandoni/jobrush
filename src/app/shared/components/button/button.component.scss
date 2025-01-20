@@ -27,12 +27,6 @@
     border-radius: 50%;
     background: transparent;
     padding: 0;
-
-
-    &:focus {
-      box-shadow: none;
-      border: 1px solid var(--primary);
-    }
   }
 
 }
@@ -60,7 +54,7 @@
   padding: 0 12px;
 
   &:hover {
-    background: #E65378;
+    background: var(--primary-hover);
   }
 
   &:focus {
@@ -69,7 +63,7 @@
   }
 }
 
-.btn-outline {
+.btn--outline {
   background: transparent;
   border: 1px solid var(--line);
   color: var(--dark-text);
