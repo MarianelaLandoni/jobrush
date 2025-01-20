@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Application } from 'core/models/application.model';
 import { ApplicationService } from 'core/services/application-service/application.service';
 import { ButtonComponent } from 'shared/components/button/button.component';
 import { InputComponent } from 'shared/components/input/input.component';
@@ -25,7 +26,7 @@ export class AddApplicationFormComponent {
 
   private fb = inject(FormBuilder);
   private applicationService = inject(ApplicationService);
-  dialogRef = inject<DialogRef<string>>(DialogRef<string>);
+  dialogRef = inject<DialogRef<Application>>(DialogRef<string>);
   data = inject(DIALOG_DATA);
 
 
@@ -50,8 +51,8 @@ export class AddApplicationFormComponent {
   onSubmit() {
     if (this.applicationForm.valid) {
       this.applicationService.addApplication(this.applicationForm.value).subscribe({
-        next: (response) => {
-          this.dialogRef.close();
+        next: (response: Application) => {
+          this.dialogRef.close(response);
         },
         error: (err) => {
           console.log('Ha habido un error:', err)
