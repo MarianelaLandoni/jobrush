@@ -13,6 +13,10 @@
     &.invalid {
       color: var(--error);
     }
+
+    &.small {
+      font-size: 0.875rem;
+    }
   }
 
 
@@ -41,18 +45,28 @@
     &.invalid {
       outline: 1px solid var(--error);
     }
+
+    &.small {
+      font-size: 0.875rem;
+      padding: 8px 10px;
+      
+      &::placeholder {
+        color: var(--placeholder);
+        font-size: 0.875rem;
+      }
+    }
   }
 
-  &__input--icon{
+  &__input--icon {
     position: absolute;
     right: 10px;
-    top:42px;
+    top: 42px;
     width: 24px;
     height: 26px;
     cursor: pointer;
   }
 
-  &__input--error{
+  &__input--error {
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--error);

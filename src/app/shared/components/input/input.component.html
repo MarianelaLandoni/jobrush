@@ -1,7 +1,7 @@
 <div class="input-container">
-  <label class="input-container__label" [ngClass]="{'valid': isValid, 'invalid': isInvalid}" [for]="id">{{label}}</label>
+  <label class="input-container__label" [ngClass]="{'valid': isValid, 'invalid': isInvalid, small: isSmall}" [for]="id">{{label}}</label>
 
-  <input class="input-container__input" [ngClass]="{'valid': isValid, 'invalid': isInvalid}" [type]="type" [id]="id" [name]="name" [placeholder]="placeholder"
+  <input class="input-container__input" [ngClass]="{'valid': isValid, 'invalid': isInvalid, small: isSmall}" [type]="type" [id]="id" [name]="name" [placeholder]="placeholder"
   [value]="value()" (input)="onInputChange($event)" (blur)="onTouched()" />
 
   @if(type === 'password'){

@@ -28,6 +28,7 @@ export class InputComponent {
   @Input() name = '';
   @Input() placeholder = 'Placeholder';
   @Input() isPassword = false;
+  @Input() isSmall = false;
   @Input() controller!: FormControl;
 
   value = signal<string>('');
