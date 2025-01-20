@@ -22,7 +22,7 @@ export class ApplicationService {
   }
 
   updateApplication(data: Application): Observable<Application> {
-    return this.http.put<Application>(`${this.url}/boards/${data.boardId}/applications/${data.id}`, data);
+    return this.http.patch<Application>(`${this.url}/boards/${data.boardId}/applications/${data.id}`, data);
   }
 
   deleteApplication(boardId: number, applicationId: number): Observable<void> {
