@@ -1,0 +1,10 @@
+<article class="modal">
+  <h2 class="modal__title">{{data.title}}</h2>
+  <p class="modal__text">{{data.description}}</p>
+  <div class="modal__buttons">
+    <app-button [text]="data.confirmButtonText" (click)="onConfirm()" [isSmall]="true"></app-button>
+    <app-button [text]="data.cancelButtonText" (click)="onCancel()"  [isSmall]="true" [isOutline]="true"></app-button>
+
+  </div>
+</article>
+
