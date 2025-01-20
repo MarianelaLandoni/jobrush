@@ -21,7 +21,6 @@ export class BoardsComponent implements OnInit {
   ngOnInit(): void {
     this.boardService.getBoards().subscribe({
       next: (response) => {
-        console.log('Tableros:', response);
         this.boards = response;
       },
       error: (error) => {
