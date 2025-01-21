@@ -2,3 +2,6 @@
 @import '@angular/cdk/overlay-prebuilt.css';
 @import 'variables.scss';
 
+.cdk-dialog-container{
+  outline: none;
+}
