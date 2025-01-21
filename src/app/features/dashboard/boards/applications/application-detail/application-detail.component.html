@@ -1,0 +1,29 @@
+<section class="application">
+  <div class="application__top">
+    <h2 class="application__top--title">{{data.application.title}}</h2>
+    <div class="application__top--company">
+      <h3 class="application__top--company-name">{{data.application.company}}</h3>
+      <div class="application__location">
+        <img class="application__location-img" src="/icons/location.svg" alt="Localización de la oferta">
+        <h3 class="application__location-name">{{data.application.location}}</h3>
+      </div>
+    </div>
+  </div>
+
+  <form class="application__form" [formGroup]="applicationDetailForm" (ngSubmit)="onSubmit()">
+    <section class="application__form-section">
+      <label class="application__form-label" for="notes">Añadir notas</label>
+      <textarea class="application__form-textarea" formControlName="notes" name="notes" id="notes"
+        placeholder="Escribe tus notas aquí..." aria-label="Campo de texto para añadir notas">{{data.application.notes}}</textarea>
+    </section>
+
+    <section class="application__form-buttons">
+      <app-button  class="application__form-btn" text="Cancelar" (click)="onCancel()" [isSmall]="true" [isOutline]="true"></app-button>
+      <app-button class="application__form-btn" text="Guardar" [disabled]="!applicationDetailForm.valid"
+        [isSmall]="true">
+      </app-button>
+    </section>
+
+  </form>
+
+</section>
