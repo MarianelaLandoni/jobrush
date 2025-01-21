@@ -79,3 +79,12 @@
   }
 
 }
+
+.btn--warning {
+  background: var(--error);
+
+  &:focus {
+    box-shadow: none;
+    transform: scale(1.02);
+  }
+}
