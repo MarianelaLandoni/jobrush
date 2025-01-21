@@ -6,6 +6,7 @@ export interface Application {
   image_url?: string;
   url: string;
   description?: string;
+  notes?: string;
   platform?: string;
   boardId: number;
   status: string;
