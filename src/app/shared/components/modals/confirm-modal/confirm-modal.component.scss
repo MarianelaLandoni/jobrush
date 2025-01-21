@@ -11,12 +11,12 @@
   padding: 24px;
 
   &__title {
-    font-size: 20px;
+    font-size: 1.5rem;
     color: var(--dark-text);
   }
 
   &__text {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: var(--text-dark-medium);
     text-align: center;
     margin: 12px 0 24px;
@@ -32,6 +32,10 @@
     app-button {
       width: 100%;
     }
+  }
+
+  .mt{
+    margin-top: 8px;
   }
 }
 

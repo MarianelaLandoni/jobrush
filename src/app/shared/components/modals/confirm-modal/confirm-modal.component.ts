@@ -1,11 +1,12 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ButtonComponent } from 'shared/components/button/button.component';
 
 @Component({
   selector: 'app-confirm-modal',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [NgClass, ButtonComponent],
   templateUrl: './confirm-modal.component.html',
   styleUrl: './confirm-modal.component.scss'
 })
