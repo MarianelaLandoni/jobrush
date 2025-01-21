@@ -26,7 +26,7 @@ export class AddApplicationFormComponent {
 
   private fb = inject(FormBuilder);
   private applicationService = inject(ApplicationService);
-  dialogRef = inject<DialogRef<Application>>(DialogRef<string>);
+  dialogRef = inject<DialogRef<Application>>(DialogRef<Application>);
   data = inject(DIALOG_DATA);
 
 
