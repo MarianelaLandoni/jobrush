@@ -25,6 +25,10 @@ export class ApplicationService {
     return this.http.patch<Application>(`${this.url}/boards/${data.boardId}/applications/${data.id}`, data);
   }
 
+  updateApplicationNotes(notes: string, id: number, boardId:number): Observable<Application> {
+    return this.http.patch<Application>(`${this.url}/boards/${boardId}/applications/${id}/notes`, notes);
+  }
+
   deleteApplication(boardId: number, applicationId: number): Observable<void> {
     return this.http.delete<void>(`${this.url}/boards/${boardId}/applications/${applicationId}`);
   }
