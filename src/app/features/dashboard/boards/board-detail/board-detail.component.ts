@@ -19,6 +19,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { AddApplicationFormComponent } from '../applications/add-application-form/add-application-form.component';
 import { ApplicationService } from 'core/services/application-service/application.service';
 import { ConfirmModalComponent } from 'shared/components/modals/confirm-modal/confirm-modal.component';
+import { ApplicationDetailComponent } from '../applications/application-detail/application-detail.component';
 
 @Component({
   selector: 'app-board-detail',
@@ -196,16 +197,23 @@ export class BoardDetailComponent implements OnInit {
     });
   }
 
-  openConfirmationModal(applicationId: number) {
+  openConfirmationModal(applicationId: number, event: Event) {
+    event.stopPropagation();
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
       maxWidth: '400px',
+      autoFocus: false,
+
       data: {
+        showImage: true,
+        srcImage: '/images/delete-bg.svg',
+        altImage: 'Imagen de papelera',
         title: '¿Estás seguro?',
         description:
           'Esta acción no se puede deshacer. Si eliminas tu postulación, no podrás volver a recuperarla.',
-        confirmButtonText: 'Aceptar',
+        confirmButtonText: 'Eliminar',
         cancelButtonText: 'Cancelar',
         confirmAction: 'delete',
+        isWarningButton: true,
       },
     });
 
@@ -236,6 +244,39 @@ export class BoardDetailComponent implements OnInit {
           console.error('Error al eliminar la postulación:', err);
         },
       });
+  }
+
+  openApplicationDetail(application: Application) {
+    const dialogRef = this.dialog.open(ApplicationDetailComponent, {
+      minWidth: '375px',
+      panelClass: 'application-detail-modal',
+      autoFocus: false,
+      data: {
+        application: application,
+      },
+    });
+
+    dialogRef.closed.subscribe((result: any) => {
+      if (result) {
+        const updatedApplication = result.application;
+
+        const updatedColumns = this.columns().map((column) => {
+          if (column.id === updatedApplication.status) {
+            return {
+              ...column,
+              applications: column.applications.map((application) =>
+                application.id === updatedApplication.id
+                  ? { ...application, notes: updatedApplication.notes }
+                  : application
+              ),
+            };
+          }
+          return column;
+        });
+
+        this.columns.set(updatedColumns);
+      }
+    });
   }
 
   goBack() {

@@ -79,6 +79,7 @@
       }
 
       &:hover {
+        box-shadow: 0 0 8px 2px var(--line);
         .board__list-box-wrapper-delete {
           opacity: 1;
           pointer-events: auto;
@@ -114,6 +115,13 @@
           opacity: 0;
           pointer-events: none;
           transition: opacity 0.3s ease;
+        }
+
+        &-open{
+          width: 18px;
+          position: absolute;
+          top: 12px;
+          right: 12px;
         }
       }
     }
