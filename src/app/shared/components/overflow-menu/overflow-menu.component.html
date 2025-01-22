@@ -1,0 +1,10 @@
+<div class="menu" [ngClass]="{open: isMenuOpen}" (click)="toggleMenu($event)">
+  <img src="/icons/dots.svg" alt="Tres puntos para abrir menú" />
+
+  @if(isMenuOpen){
+  <div class="menu__options">
+    <ng-content></ng-content>
+  </div>
+  }
+
+</div>
