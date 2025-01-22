@@ -1,9 +1,14 @@
 <section class="board">
 
   <section class="board__top">
-    <app-button class="board__top-arrow" [iconButton]="true" iconSrc="/icons/arrow-back.svg" iconAlt="Ir hacia atrás"
-      (click)="goBack()"></app-button>
-    <h2 class="board__top-title">{{board?.name}}</h2>
+    <div class="board__top-left">
+      <app-button class="board__top-left-arrow" [iconButton]="true"
+        iconSrc="/icons/arrow-back.svg" iconAlt="Ir hacia atrás" (click)="goBack()"></app-button>
+      <h2 class="board__top-left-title">{{board?.name}}</h2>
+    </div>
+
+    <app-button text="Eliminar tablero" [isSmall]="true" [isLeftIcon]="true" leftIconSrc="/icons/delete-white.svg"
+    [isWarning]="true"  (click)="openDeleteBoardModal(board.id, $event)"></app-button>
   </section>
 
   <section cdkDropListGroup class="board__group">
@@ -20,7 +25,8 @@
         </div>
 
         @for (application of column.applications; track $index) {
-        <div class="board__list-box" cdkDrag (cdkDragMoved)="onDragMoved($event)" (click)="openApplicationDetail(application)">
+        <div class="board__list-box" cdkDrag (cdkDragMoved)="onDragMoved($event)"
+          (click)="openApplicationDetail(application)">
           <div class="board__list-drag-placeholder" *cdkDragPlaceholder></div>
           <h4 class="board__list-box-title">{{ application.title }}</h4>
           <div class="board__list-box-wrapper">
@@ -29,9 +35,7 @@
             <p class="board__list-box-wrapper-company">{{ application.company }}</p>
           </div>
           <img class="board__list-box-wrapper-delete" src="/icons/delete.svg" alt="Eliminar postulación"
-          (click)="openConfirmationModal(application.id, $event)">
-          <!-- <img class="board__list-box-wrapper-open" src="/icons/arrow-open.svg" alt="Abrir detalle de la postulación"
-            (click)="openApplicationDetail(application)"> -->
+            (click)="openConfirmationModal(application.id, $event)">
         </div>
         }
       </div>

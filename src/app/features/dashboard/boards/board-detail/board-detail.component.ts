@@ -279,6 +279,45 @@ export class BoardDetailComponent implements OnInit {
     });
   }
 
+  openDeleteBoardModal(boardId: number, event: Event){
+    event.stopPropagation();
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      maxWidth: '400px',
+      autoFocus: false,
+      data: {
+        showImage: true,
+        srcImage: '/images/delete-bg.svg',
+        altImage: 'Imagen de papelera',
+        title: '¿Estás seguro?',
+        description:
+          'Esta acción no se puede deshacer. Si eliminas el tablero, perderás todas las postulaciones y no podrás volver a recuperarlo.',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar',
+        confirmAction: 'delete',
+        isWarningButton: true,
+      },
+    });
+
+    dialogRef.closed.subscribe((result) => {
+      if (result === 'delete') {
+        this.deleteBoard(boardId);
+      } else {
+        console.log('Action canceled or other action.');
+      }
+    });
+  }
+
+  deleteBoard(boardId: number){
+    this.boardService.deleteBoard(boardId).subscribe({
+      next:() => {
+        this.goBack();
+      },
+      error:(err) => {
+        console.log("No se ha podido eliminar el tablero", err)
+      }
+    })
+  }
+
   goBack() {
     return this.router.navigate(['/tableros']);
   }
