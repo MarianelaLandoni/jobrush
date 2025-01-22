@@ -1,0 +1,15 @@
+<section class="board">
+  <h2 class="board__title">Añadir Tablero</h2>
+  <form class="board__form" [formGroup]="boardForm" (ngSubmit)="onSubmit()">
+    <app-input formControlName="name" [controller]="nameControl" label="Nombre" id="name" name="name"
+      placeholder="Escribe el nombre del tablero" [isSmall]="true">
+    </app-input>
+
+    @if(showErrorMsg){
+    <p class="board__error-msg" role="alert">{{errorMsg}}</p>
+    }
+
+    <app-button class="board__button" text="Añadir tablero" [disabled]="!boardForm.valid"  [isSmall]="true">
+    </app-button>
+  </form>
+</section>
