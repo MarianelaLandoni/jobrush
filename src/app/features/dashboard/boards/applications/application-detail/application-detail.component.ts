@@ -29,21 +29,12 @@ export class ApplicationDetailComponent {
   private applicationService = inject(ApplicationService);
 
   ngOnInit(): void {
-    console.log(this.data.application);
     this.buildForm();
   }
 
   buildForm() {
     this.applicationDetailForm = this.fb.group({
-      //title: [''],
-      //company: ['', []],
-      //location: ['', []],
-      //url: ['', []],
-      //imageUrl: ['', []],
       notes: [this.data.application.notes, []],
-      //platform: ['', []],
-      // boardId: [this.data.boardId, []],
-      // status: [this.data.status, []],
     });
   }
 
