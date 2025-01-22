@@ -5,18 +5,25 @@ import { environment } from 'environments/environment.development';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BoardService {
-
   private http = inject(HttpClient);
   private url = environment.API_URL;
 
-  getBoards(): Observable<Board[]>{
+  getBoards(): Observable<Board[]> {
     return this.http.get<Board[]>(`${this.url}/boards`);
   }
 
-  getBoardById(id: string): Observable<Board>{
+  getBoardById(id: string): Observable<Board> {
     return this.http.get<Board>(`${this.url}/boards/${id}`);
+  }
+
+  addBoard(data: Board): Observable<Board> {
+    return this.http.post<Board>(`${this.url}/boards`, data);
+  }
+
+  deleteBoard(boardId: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/boards/${boardId}`);
   }
 }
