@@ -1,6 +1,13 @@
 <article class="card" (click)="buttonClickEvent.emit($event)" (mouseenter)="isHover = true"
   (mouseleave)="isHover = false">
   <h3 class="card__title">{{title()}}</h3>
-  <app-button class="card__btn" [ngClass]="{'scale': isHover}" [iconButton]="true"
-    iconSrc="/icons/arrow-link.svg"></app-button>
+  <app-overflow-menu>
+    <div class="card__menu" (click)="deleteBoardEvent.emit($event)">
+      <img class="card__menu-trash" src="/icons/delete.svg" alt="Papelera de eliminar">
+      <p class="card__menu-text">Eliminar tablero</p>
+    </div>
+
+  </app-overflow-menu>
+
+
 </article>

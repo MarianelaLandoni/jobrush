@@ -1,17 +1,19 @@
 import { Component, input, output } from '@angular/core';
-import { ButtonComponent } from '../button/button.component';
-import { NgClass } from '@angular/common';
+import { OverflowMenuComponent } from '../overflow-menu/overflow-menu.component';
+import { Board } from 'core/models/board.model';
 
 @Component({
   selector: 'app-card-button',
   standalone: true,
-  imports: [NgClass, ButtonComponent],
+  imports: [OverflowMenuComponent],
   templateUrl: './card-button.component.html',
   styleUrl: './card-button.component.scss',
 })
 export class CardButtonComponent {
   title = input<string>();
   buttonClickEvent = output<MouseEvent>();
+  deleteBoardEvent = output<MouseEvent>();
 
   isHover = false;
+
 }
