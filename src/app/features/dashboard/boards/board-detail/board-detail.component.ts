@@ -248,7 +248,7 @@ export class BoardDetailComponent implements OnInit {
 
   openApplicationDetail(application: Application) {
     const dialogRef = this.dialog.open(ApplicationDetailComponent, {
-      minWidth: '375px',
+      minWidth: '340px',
       panelClass: 'application-detail-modal',
       autoFocus: false,
       data: {

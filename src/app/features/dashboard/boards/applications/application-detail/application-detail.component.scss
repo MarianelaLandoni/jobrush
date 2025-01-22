@@ -8,14 +8,10 @@
 
 .application {
   width: 100%;
-  max-width: 320px;
 
   &__top {
-    display: flex;
-    flex-direction: column;
-    //gap: 12px;
 
-    &--title {
+    &-title {
       font-size: 1.5rem;
       color: var(--dark-text);
       border-bottom: 1px solid var(--line);
@@ -23,7 +19,7 @@
       margin-bottom: 6px;
     }
 
-    &--company {
+    &-company {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -45,7 +41,7 @@
   &__location {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 2px;
     padding-top: 6px;
 
     &-img {
@@ -59,7 +55,7 @@
   }
 
   &__form {
-    margin-top: 24px;
+    margin: 24px 0;
 
     &-section {
       display: flex;
@@ -92,26 +88,45 @@
         border: 1px solid var(--primary-hover);
       }
     }
+  }
 
-    &-buttons {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 12px;
-      margin-top: 32px;
-    }
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    color: var(--text-dark-text);
+    font-size: 0.875rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
 
     &-btn {
       width: 100%;
-      max-width: 160px;
     }
   }
 }
 
 
-// @media screen and (width > 768px) {
-//   .application{
-//     min-width: 620px;
-//   }
+@media screen and (width > 768px) {
+  .application {
+    max-width: 100%;
 
-// }
+    &__link{
+      &:hover{
+        color: var(--primary);
+      }
+    }
+
+    &__buttons {
+      flex-direction: row-reverse;
+    }
+  }
+
+}
