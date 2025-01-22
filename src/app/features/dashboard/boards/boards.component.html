@@ -3,12 +3,12 @@
   <header class="boards__top">
     <h2 class="boards__top-title">Mis tableros</h2>
     <app-button text="Nuevo tablero" [isSmall]="true" [isLeftIcon]="true"
-      leftIconSrc="/icons/plus-white.svg"></app-button>
+      leftIconSrc="/icons/plus-white.svg" (click)="openAddBoardModal()"></app-button>
   </header>
 
   <section class="boards__cards">
-    @for (board of boards; track $index) {
-    <app-card-button [title]="board.name" (buttonClickEvent)="goToBoard(board.id)"></app-card-button>
+    @for (board of boards(); track $index) {
+    <app-card-button [title]="board.name" (buttonClickEvent)="goToBoard(board.id)" (deleteBoardEvent)="openDeleteBoardModal(board.id, $event)"></app-card-button>
     }
   </section>
 
