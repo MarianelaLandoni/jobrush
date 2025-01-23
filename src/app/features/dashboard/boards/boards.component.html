@@ -2,14 +2,22 @@
 
   <header class="boards__top">
     <h2 class="boards__top-title">Mis tableros</h2>
-    <app-button text="Nuevo tablero" [isSmall]="true" [isLeftIcon]="true"
-      leftIconSrc="/icons/plus-white.svg" (click)="openAddBoardModal()"></app-button>
+    <app-button text="Nuevo tablero" [isSmall]="true" [isLeftIcon]="true" leftIconSrc="/icons/plus-white.svg"
+      (click)="openAddBoardModal()"></app-button>
   </header>
 
+  @if(!noBoards){
   <section class="boards__cards">
     @for (board of boards(); track $index) {
-    <app-card-button [title]="board.name" (buttonClickEvent)="goToBoard(board.id)" (deleteBoardEvent)="openDeleteBoardModal(board.id, $event)"></app-card-button>
+    <app-card-button [title]="board.name" (buttonClickEvent)="goToBoard(board.id)"
+      (deleteBoardEvent)="openDeleteBoardModal(board.id, $event)"></app-card-button>
     }
   </section>
+  } @else {
+  <app-empty-section title="¡Nada por aquí todavía!"
+    text="Crea tu primer tablero para gestionar tus postulaciones de manera sencilla y eficiente."
+    image="/images/no-boards.svg" buttonText="Crear tablero ahora"
+    (buttonClickEvent)="openAddBoardModal()"></app-empty-section>
+  }
 
 </div>

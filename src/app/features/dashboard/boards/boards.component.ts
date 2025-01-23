@@ -6,13 +6,13 @@ import { BoardService } from 'core/services/boards-service/board.service';
 import { ButtonComponent } from 'shared/components/button/button.component';
 import { CardButtonComponent } from 'shared/components/card-button/card-button.component';
 import { AddBoardFormComponent } from './add-board-form/add-board-form.component';
-import { OverflowMenuComponent } from 'shared/components/overflow-menu/overflow-menu.component';
 import { ConfirmModalComponent } from 'shared/components/modals/confirm-modal/confirm-modal.component';
+import { EmptySectionComponent } from 'shared/components/empty-section/empty-section.component';
 
 @Component({
   selector: 'app-boards',
   standalone: true,
-  imports: [ButtonComponent, CardButtonComponent, OverflowMenuComponent],
+  imports: [ButtonComponent, CardButtonComponent, EmptySectionComponent],
   templateUrl: './boards.component.html',
   styleUrl: './boards.component.scss',
 })
@@ -36,6 +36,10 @@ export class BoardsComponent implements OnInit {
         console.error('Error al obtener tableros:', error);
       },
     });
+  }
+
+  get noBoards(){
+    return this.boards().length === 0;
   }
 
   openAddBoardModal() {
