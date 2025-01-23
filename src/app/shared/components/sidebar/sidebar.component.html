@@ -22,7 +22,7 @@
         <a class="sidebar__link" [routerLink]="item.route" routerLinkActive="sidebar__link--active"
           [ngClass]="{'sidebar__link--hover': hoveredItem === item.route}">
 
-          <img [src]="isActive(item.route) ? item.iconActive : item.icon" [alt]="item.label" class="sidebar__icon">
+          <img [src]="isActive(item.route) ? item.iconActive : item.icon" alt="Icono de navegación hacia {{item.label}}" class="sidebar__icon">
 
           @if(!isCollapsed){
           <span class="sidebar__text" [ngClass]="{'sidebar__text--hover': hoveredItem === item.route}"
