@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 275px;
+  min-width: 230px;
   gap: 12px;
   background-color: var(--white);
   border: 1px solid var(--line);
@@ -17,10 +17,6 @@
   &__title {
     font-size: 0.875rem;
     color: var(--dark-text);
-    text-overflow: ellipsis;
-    max-width: 200px;
-    overflow: hidden;
-    white-space: nowrap;
   }
 
   &__menu{
