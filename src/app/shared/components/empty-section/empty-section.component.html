@@ -1,0 +1,9 @@
+<section class="empty">
+  <img class="empty__image" [src]="image()" alt="{{title()}}">
+  <div class="empty__texts">
+    <h2 class="empty__texts-title">{{title()}}</h2>
+    <p class="empty__texts-text">{{text()}}</p>
+  </div>
+
+  <app-button [text]="buttonText()" [isLeftIcon]="true" [leftIconSrc]="buttonLeftIcon()" (click)="buttonClickEvent.emit()" [isSmall]="true"></app-button>
+</section>
