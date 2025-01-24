@@ -1,8 +1,9 @@
 :root {
-  --primary: #D72F59;
-  --primary-bg: #f7b9d6;
-  --primary-hover: #E65378;
-  //--secondary:#814756;
+  --primary: #876BBF;
+  --primary-bg: #F3EDFF;
+  --primary-hover: #D9C6FF;
+  --primary-dark-hover: #713ADD;
+  --primary-text: #5A29BB;
   --white: #fff;
   --background: #f8f8f8;
   --bg-disabled: #757575;
@@ -18,12 +19,13 @@
   --input-bg: #f9fafb;
   --gradient-bg: linear-gradient(to right, #e74694, #f56565, #e53e3e);
   --gradient-hover-bg: linear-gradient(to right, #ee5aa4, #f77c7c, #ee5050);
-  --btn-focus: #F190BF;
+  --btn-focus: rgba(135, 107, 191, 0.3);;
 
   --border-line: #cbcaca;
   --tooltip-bg: #1f2937;
 
   --error: #E02424;
+  --error-dark: #BE1313;
   --error-bg: rgba(224, 36, 36, 0.2);
 
 
