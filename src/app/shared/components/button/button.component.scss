@@ -5,7 +5,7 @@
   justify-content: center;
   gap: 4px;
   color: var(--white);
-  background: var(--gradient-bg);
+  background: var(--primary);
   border-radius: 0.5rem;
   border: none;
   font-size: 1.125rem;
@@ -14,26 +14,33 @@
   font-weight: 500;
   transition: background-color 0.3s, box-shadow 0.3s;
 
-  &:focus {
-    box-shadow: 0 0 8px 2px var(--btn-focus);
-    transform: scale(1.02);
+  &:hover{
+    background: var(--primary-dark-hover);
   }
 
-  &.icon {
-    width: 32px;
-    height: 32px;
-    display: grid;
-    place-content: center;
-    border-radius: 50%;
-    background: transparent;
-    padding: 0;
+  &:active {
+    box-shadow: 0 0 0 3px var(--btn-focus);
+    transform: scale(1.02);
   }
 
 }
 
-.btn--hover {
-  background: var(--gradient-hover-bg);
-  transition: ease 0.3s;
+.btn--icon {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+
+  &:hover{
+    background: transparent;
+  }
+
+  // &:focus{
+  //   border: 1px solid var(--primary-dark-hover);
+  // }
 }
 
 .btn--disabled {
@@ -41,7 +48,7 @@
   color: var(--white);
   opacity: 0.6;
 
-  &:focus {
+  &:active {
     box-shadow: none;
     transform: none;
   }
@@ -54,12 +61,24 @@
   padding: 0 12px;
 
   &:hover {
-    background: var(--primary-hover);
+    background: var(--primary-dark-hover);
   }
 
-  &:focus {
-    box-shadow: 0 0 8px 2px var(--btn-focus);
+  //&:focus,
+  &:active {
+    box-shadow: 0 0 0 3px var(--btn-focus);
     transform: scale(1.02);
+  }
+}
+
+.btn--outline-primary {
+  background: var(--primary-bg);
+  border: 1px solid var(--primary);
+  color: var(--primary-text);
+  font-size: 1rem;
+
+  &:hover {
+    background: var(--primary-hover);
   }
 }
 
@@ -73,18 +92,29 @@
     box-shadow: 0 0 8px 2px var(--line);
   }
 
-  &:focus {
+  &:active {
     box-shadow: none;
     transform: scale(1.02);
   }
 
+  // &:focus {
+  //   box-shadow: none;
+  // }
 }
 
 .btn--warning {
   background: var(--error);
 
-  &:focus {
+  &:hover {
+    background: var(--error-dark);
+  }
+
+  &:active {
     box-shadow: none;
     transform: scale(1.02);
   }
+
+  // &:focus {
+  //   box-shadow: none;
+  // }
 }

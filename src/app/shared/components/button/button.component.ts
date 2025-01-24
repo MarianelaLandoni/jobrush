@@ -15,6 +15,7 @@ export class ButtonComponent {
   @Input() iconSrc = '';
   @Input() iconAlt = '';
   @Input() isSmall = false;
+  @Input() isOutlinePrimary = false;
   @Input() isOutline = false;
   @Input() isWarning = false;
   @Input() isLeftIcon = false;
