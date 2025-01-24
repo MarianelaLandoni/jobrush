@@ -18,7 +18,8 @@
         id="password"
         name="password"
         type="password"
-        placeholder="Escribe tu contraseña">
+        placeholder="Escribe tu contraseña"
+        [isPassword]="true">
       </app-input>
 
       @if(showErrorMsg){
@@ -31,7 +32,7 @@
         class="login__button">
       </app-button>
     </form>
-    <p class="login__question">¿No tienes cuenta? Regístrate <a class="login__question--link" [routerLink]="'/registro'">aquí</a></p>
+    <p class="login__question">¿No tienes cuenta?  <a class="login__question--link" [routerLink]="'/registro'">Regístrate aquí</a></p>
   </div>
 
   <div class="login__side login__side--right">
