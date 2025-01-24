@@ -7,25 +7,25 @@
       <h2 class="board__top-left-title">{{board?.name}}</h2>
     </div>
 
-    <app-button text="Eliminar tablero" [isSmall]="true" [isLeftIcon]="true" leftIconSrc="/icons/delete-white.svg"
-    [isWarning]="true"  (click)="openDeleteBoardModal(board.id, $event)"></app-button>
+    <app-button text="Eliminar tablero" [isSmall]="true" [isOutlinePrimary]="true" [isLeftIcon]="true" leftIconSrc="/icons/delete-primary.svg"
+    (click)="openDeleteBoardModal(board.id, $event)"></app-button>
   </section>
 
   <section cdkDropListGroup class="board__group">
     @for (column of columns(); track $index) {
-    <div class="board__container">
+    <div class="board__container" >
       <div cdkDropList [id]="column.id" [cdkDropListData]="column.applications"
-        [cdkDropListConnectedTo]="connectedColumns()" class="board__list" (cdkDropListDropped)="drop($event)">
+        [cdkDropListConnectedTo]="connectedColumns()" class="board__list" tabindex="0" (cdkDropListDropped)="drop($event)">
 
         <div class="board__list-top">
           <img [src]="column.icon" alt="{{ column.name }}">
           <h2 class="board__list-title">{{ column.name }}</h2>
-          <img class="board__list-add-icon" src="/icons/plus.svg" alt="Añadir postulación a la columna {{column.name}}"
-            (click)="openApplicationModal(column.id)">
+          <app-button class="board__list-add-icon" [iconButton]="true"
+          iconSrc="/icons/plus.svg" iconAlt="Añadir postulación a la columna {{column.name}}"  (click)="openApplicationModal(column.id)"></app-button>
         </div>
 
         @for (application of column.applications; track $index) {
-        <div class="board__list-box" cdkDrag (cdkDragMoved)="onDragMoved($event)"
+        <div class="board__list-box" tabindex="0" cdkDrag (cdkDragMoved)="onDragMoved($event)"
           (click)="openApplicationDetail(application)">
           <div class="board__list-drag-placeholder" *cdkDragPlaceholder></div>
           <h4 class="board__list-box-title">{{ application.title }}</h4>
