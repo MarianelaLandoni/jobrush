@@ -8,6 +8,7 @@ import { CardButtonComponent } from 'shared/components/card-button/card-button.c
 import { AddBoardFormComponent } from './add-board-form/add-board-form.component';
 import { ConfirmModalComponent } from 'shared/components/modals/confirm-modal/confirm-modal.component';
 import { EmptySectionComponent } from 'shared/components/empty-section/empty-section.component';
+import { SpinnerService } from 'core/services/spinner-service/spinner.service';
 
 @Component({
   selector: 'app-boards',
@@ -18,6 +19,7 @@ import { EmptySectionComponent } from 'shared/components/empty-section/empty-sec
 })
 export class BoardsComponent implements OnInit {
   private boardService = inject(BoardService);
+  private spinnerService = inject(SpinnerService);
   private router = inject(Router);
   private dialog = inject(Dialog);
 
@@ -39,7 +41,7 @@ export class BoardsComponent implements OnInit {
   }
 
   get noBoards(){
-    return this.boards().length === 0;
+    return !this.spinnerService.isLoading() && this.boards().length === 0;
   }
 
   openAddBoardModal() {

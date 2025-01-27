@@ -1,27 +1,30 @@
 <section class="board">
 
-  <section class="board__top">
+  <header class="board__top">
     <div class="board__top-left">
-      <app-button class="board__top-left-arrow" [iconButton]="true"
-        iconSrc="/icons/arrow-back.svg" iconAlt="Ir hacia atrás" (click)="goBack()"></app-button>
+      <app-button class="board__top-left-arrow" [iconButton]="true" iconSrc="/icons/arrow-back.svg"
+        iconAlt="Ir hacia atrás" (click)="goBack()"></app-button>
       <h2 class="board__top-left-title">{{board?.name}}</h2>
     </div>
 
-    <app-button text="Eliminar tablero" [isSmall]="true" [isOutlinePrimary]="true" [isLeftIcon]="true" leftIconSrc="/icons/delete-primary.svg"
-    (click)="openDeleteBoardModal(board.id, $event)"></app-button>
-  </section>
+    <app-button text="Eliminar tablero" [isSmall]="true" [isOutlinePrimary]="true" [isLeftIcon]="true"
+      leftIconSrc="/icons/delete-primary.svg" (click)="openDeleteBoardModal(board.id, $event)"></app-button>
+  </header>
 
+  @if(!isLoading()){
   <section cdkDropListGroup class="board__group">
     @for (column of columns(); track $index) {
-    <div class="board__container" >
+    <div class="board__container">
       <div cdkDropList [id]="column.id" [cdkDropListData]="column.applications"
-        [cdkDropListConnectedTo]="connectedColumns()" class="board__list" tabindex="0" (cdkDropListDropped)="drop($event)">
+        [cdkDropListConnectedTo]="connectedColumns()" class="board__list" tabindex="0"
+        (cdkDropListDropped)="drop($event)">
 
         <div class="board__list-top">
           <img [src]="column.icon" alt="{{ column.name }}">
           <h2 class="board__list-title">{{ column.name }}</h2>
-          <app-button class="board__list-add-icon" [iconButton]="true"
-          iconSrc="/icons/plus.svg" iconAlt="Añadir postulación a la columna {{column.name}}"  (click)="openApplicationModal(column.id)"></app-button>
+          <app-button class="board__list-add-icon" [iconButton]="true" iconSrc="/icons/plus.svg"
+            iconAlt="Añadir postulación a la columna {{column.name}}"
+            (click)="openApplicationModal(column.id)"></app-button>
         </div>
 
         @for (application of column.applications; track $index) {
@@ -42,4 +45,5 @@
     </div>
     }
   </section>
+  }
 </section>

@@ -20,6 +20,7 @@ import { AddApplicationFormComponent } from '../applications/add-application-for
 import { ApplicationService } from 'core/services/application-service/application.service';
 import { ConfirmModalComponent } from 'shared/components/modals/confirm-modal/confirm-modal.component';
 import { ApplicationDetailComponent } from '../applications/application-detail/application-detail.component';
+import { SpinnerService } from 'core/services/spinner-service/spinner.service';
 
 @Component({
   selector: 'app-board-detail',
@@ -38,9 +39,11 @@ export class BoardDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private boardService = inject(BoardService);
+  private spinnerService = inject(SpinnerService);
   private applicationService = inject(ApplicationService);
   private dialog = inject(Dialog);
-
+  
+  isLoading = this.spinnerService.isLoading;
   board!: Board;
 
   columns = signal<Column[]>([
@@ -86,6 +89,7 @@ export class BoardDetailComponent implements OnInit {
       console.error('No se encontró el id del tablero en la URL');
     }
   }
+
 
   getBoard(id: string): void {
     this.boardService.getBoardById(id).subscribe({

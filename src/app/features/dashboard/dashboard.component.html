@@ -3,5 +3,9 @@
 
   <main class="main-content">
     <router-outlet />
+    @if(isLoading()){
+      <app-spinner />
+    }
   </main>
+
 </div>
