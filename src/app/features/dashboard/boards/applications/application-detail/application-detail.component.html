@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <form class="application__form" [formGroup]="applicationDetailForm" (ngSubmit)="onSubmit()">
+  <form class="application__form" [formGroup]="applicationDetailForm">
     <section class="application__form-section">
       <label class="application__form-label" for="notes">Añadir notas</label>
       <textarea class="application__form-textarea" formControlName="notes" name="notes" id="notes"
@@ -30,7 +30,7 @@
 
 
   <section class="application__buttons">
-    <app-button class="application__buttons-btn" text="Guardar" [disabled]="!applicationDetailForm.valid"
+    <app-button class="application__buttons-btn" text="Guardar" [disabled]="!applicationDetailForm.valid" (click)="onSubmit()"
     [isSmall]="true">
   </app-button>
     <app-button class="application__buttons-btn" text="Cancelar" (click)="onCancel()" [isSmall]="true"
