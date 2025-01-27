@@ -4,6 +4,7 @@ import { provideRouter, withComponentInputBinding, withViewTransitions } from '@
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from 'core/interceptors/auth.interceptor';
+import { spinnerInterceptor } from 'core/interceptors/spinner.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideHttpClient(
       withFetch(),
-      withInterceptors([authInterceptor])),
+      withInterceptors([authInterceptor, spinnerInterceptor])),
   ],
 };
