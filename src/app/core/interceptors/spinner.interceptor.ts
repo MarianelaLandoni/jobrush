@@ -5,7 +5,10 @@ import { finalize } from 'rxjs';
 
 export const spinnerInterceptor: HttpInterceptorFn = (req, next) => {
   const spinnerService = inject(SpinnerService);
-  spinnerService.show();
+
+  if (req.method === 'GET') {
+    spinnerService.show();
+  }
 
   return next(req).pipe(
     finalize(()=> spinnerService.hide())
