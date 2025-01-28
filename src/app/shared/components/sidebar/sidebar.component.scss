@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 24px 16px 16px;
-  background-color: #f2eeee;
+  background-color: var(--primary-bg);
   border-right: 1px solid var(--border-line);
 
   &.collapsed {
@@ -43,6 +43,12 @@
   }
 
   &__toggle {
+    border: 1px solid transparent;
+
+    &:hover{
+      border-radius: 50%;
+      border: 1px solid var(--primary);
+    }
     &.collapsed {
       transform: rotate(180deg);
     }
