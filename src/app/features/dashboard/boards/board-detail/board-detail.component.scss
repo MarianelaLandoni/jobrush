@@ -1,5 +1,4 @@
 .board {
- 
   &__top {
     display: flex;
     align-items: center;
@@ -101,7 +100,7 @@
       &-title {
         font-size: 0.875rem;
         color: var(--dark-text);
-        margin-bottom: 4px;
+        margin-bottom: 8px;
       }
 
       &-wrapper {
