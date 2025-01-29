@@ -71,12 +71,12 @@
 
     &-textarea {
       resize: vertical;
-      min-height: 80px;
+      min-height: 100px;
       color: var(--dark-text);
       font-size: 0.875rem;
       border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 8px;
+      padding: 8px 12px;
 
       &::placeholder {
         font-size: 0.875rem;
