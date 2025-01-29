@@ -42,7 +42,7 @@ export class BoardDetailComponent implements OnInit {
   private spinnerService = inject(SpinnerService);
   private applicationService = inject(ApplicationService);
   private dialog = inject(Dialog);
-  
+
   isLoading = this.spinnerService.isLoading;
   board!: Board;
 
@@ -253,6 +253,7 @@ export class BoardDetailComponent implements OnInit {
   openApplicationDetail(application: Application) {
     const dialogRef = this.dialog.open(ApplicationDetailComponent, {
       minWidth: '340px',
+      maxWidth: '450px',
       panelClass: 'application-detail-modal',
       autoFocus: false,
       data: {
