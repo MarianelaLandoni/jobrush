@@ -28,6 +28,7 @@
     background-color: var(--input-bg);
     border-radius: 8px;
     padding: 12px 10px;
+    caret-color: var(--primary);
 
     &::placeholder {
       color: var(--placeholder);
@@ -49,7 +50,7 @@
     &.small {
       font-size: 0.875rem;
       padding: 8px 10px;
-      
+
       &::placeholder {
         color: var(--placeholder);
         font-size: 0.875rem;
