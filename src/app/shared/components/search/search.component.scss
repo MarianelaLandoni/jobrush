@@ -1,0 +1,39 @@
+
+:host{
+  display: block;
+  width: 100%;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+
+.search{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px 8px;
+
+
+  &__input{
+    color: var(--dark-text);
+    font-size: 1rem;
+    caret-color: var(--primary);
+  }
+
+  &:focus-within {
+    border: 1px solid var(--primary);
+  }
+}
+
+
+input::placeholder{
+  color: var(--placeholder);
+  font-size: 1rem;
+}
+
+
+input:focus{
+  outline: none;
+}
