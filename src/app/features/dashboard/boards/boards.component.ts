@@ -1,5 +1,5 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Board } from 'core/models/board.model';
 import { BoardService } from 'core/services/boards-service/board.service';
@@ -9,6 +9,7 @@ import { AddBoardFormComponent } from './add-board-form/add-board-form.component
 import { ConfirmModalComponent } from 'shared/components/modals/confirm-modal/confirm-modal.component';
 import { EmptySectionComponent } from 'shared/components/empty-section/empty-section.component';
 import { SpinnerService } from 'core/services/spinner-service/spinner.service';
+import { UtilsService } from 'core/services/utils-service/utils.service';
 
 @Component({
   selector: 'app-boards',
@@ -22,11 +23,17 @@ export class BoardsComponent implements OnInit {
   private spinnerService = inject(SpinnerService);
   private router = inject(Router);
   private dialog = inject(Dialog);
+  private utilsService = inject(UtilsService);
+  private destroyRef = inject(DestroyRef);
 
-  boards = signal<Board[]>([]);
+  protected isBtnTextVisible = true;
+  protected boards = signal<Board[]>([]);
 
   ngOnInit(): void {
     this.getBoards();
+    this.utilsService.observeBreakpoint('(min-width: 768px)', (matches) => {
+      this.isBtnTextVisible = matches;
+    }, this.destroyRef);
   }
 
   getBoards() {
