@@ -1,0 +1,15 @@
+<header class="header-board">
+  <div class="header-board__left">
+    <div class="header-board__left-top">
+      <app-button class="header-board__left-arrow" [iconButton]="true" iconSrc="/icons/arrow-back.svg"
+        iconAlt="Ir hacia atrás" (click)="gobackEvent.emit($event)"></app-button>
+      <h2 class="header-board__left-title">{{board()?.name}}</h2>
+      <app-button class="show-mobile"  [isSmall]="true" [isOutlinePrimary]="true" [isLeftIcon]="true"
+      leftIconSrc="/icons/delete-primary.svg" (click)="deleteEvent.emit($event)"></app-button>
+    </div>
+    <app-search class="header-board__left-search" (searchEvent)="searchEvent.emit($event)"></app-search>
+  </div>
+
+  <app-button class="show-desktop" text="Eliminar tablero" [isSmall]="true" [isOutlinePrimary]="true" [isLeftIcon]="true"
+    leftIconSrc="/icons/delete-primary.svg" (click)="deleteEvent.emit($event)"></app-button>
+</header>
