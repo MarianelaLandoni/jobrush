@@ -2,9 +2,12 @@
 
   <header class="board__top">
     <div class="board__top-left">
-      <app-button class="board__top-left-arrow" [iconButton]="true" iconSrc="/icons/arrow-back.svg"
-        iconAlt="Ir hacia atrás" (click)="goBack()"></app-button>
-      <h2 class="board__top-left-title">{{board?.name}}</h2>
+      <div class="board__top-left-title">
+        <app-button class="board__top-left-title-arrow" [iconButton]="true" iconSrc="/icons/arrow-back.svg"
+          iconAlt="Ir hacia atrás" (click)="goBack()"></app-button>
+        <h2 class="board__top-left-title">{{board?.name}}</h2>
+      </div>
+      <app-search (searchEvent)="filterApplications($event)"></app-search>
     </div>
 
     <app-button text="Eliminar tablero" [isSmall]="true" [isOutlinePrimary]="true" [isLeftIcon]="true"
@@ -13,7 +16,7 @@
 
   @if(!isLoading()){
   <section cdkDropListGroup class="board__group">
-    @for (column of columns(); track $index) {
+    @for (column of filteredColumns(); track $index) {
     <div class="board__container">
       <div cdkDropList [id]="column.id" [cdkDropListData]="column.applications"
         [cdkDropListConnectedTo]="connectedColumns()" class="board__list" tabindex="0"
@@ -31,13 +34,26 @@
         <div class="board__list-box" tabindex="0" cdkDrag (cdkDragMoved)="onDragMoved($event)"
           (click)="openApplicationDetail(application)">
           <div class="board__list-drag-placeholder" *cdkDragPlaceholder></div>
-          <h4 class="board__list-box-title">{{ application.title }}</h4>
+          <div class="board__list-box-top">
+            <h4 class="board__list-box-top-title">{{ application.title }}</h4>
+            <!-- <app-overflow-menu class="overflow">
+              <div class="overflow-wrapper">
+                <p class="overflow-wrapper-text">Ver detalle</p>
+              </div>
+              <div class="overflow-wrapper">
+                <img class="overflow-wrapper-trash" src="/icons/delete.svg" alt="Papelera de eliminar">
+                <p class="overflow-wrapper-text">Eliminar</p>
+              </div>
+            </app-overflow-menu> -->
+            <p class="board__list-box-top-date-text show-desktop">{{ application.created_at | date:"dd/MM/yy" }}</p>
+
+          </div>
           <div class="board__list-box-wrapper">
             <img class="board__list-box-wrapper-image" [src]="application.image_url || '/icons/company.svg'"
               alt="{{ application.company }}">
             <p class="board__list-box-wrapper-company">{{ application.company }}</p>
           </div>
-          <img class="board__list-box-wrapper-delete" src="/icons/delete.svg" alt="Eliminar postulación"
+          <img class="board__list-box-wrapper-delete show-desktop" src="/icons/delete.svg" alt="Eliminar postulación"
             (click)="openConfirmationModal(application.id, $event)">
         </div>
         }

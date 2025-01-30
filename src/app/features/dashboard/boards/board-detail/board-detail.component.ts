@@ -21,6 +21,8 @@ import { ApplicationService } from 'core/services/application-service/applicatio
 import { ConfirmModalComponent } from 'shared/components/modals/confirm-modal/confirm-modal.component';
 import { ApplicationDetailComponent } from '../applications/application-detail/application-detail.component';
 import { SpinnerService } from 'core/services/spinner-service/spinner.service';
+import { SearchComponent } from 'shared/components/search/search.component';
+import { OverflowMenuComponent } from 'shared/components/overflow-menu/overflow-menu.component';
 
 @Component({
   selector: 'app-board-detail',
@@ -31,6 +33,8 @@ import { SpinnerService } from 'core/services/spinner-service/spinner.service';
     CdkDrag,
     CdkDragPlaceholder,
     ButtonComponent,
+    SearchComponent,
+    OverflowMenuComponent
   ],
   templateUrl: './board-detail.component.html',
   styleUrl: './board-detail.component.scss',
@@ -46,6 +50,7 @@ export class BoardDetailComponent implements OnInit {
   isLoading = this.spinnerService.isLoading;
   board!: Board;
 
+  filteredColumns = signal<Column[]>([]);
   columns = signal<Column[]>([
     {
       id: 'favorites',
@@ -107,6 +112,7 @@ export class BoardDetailComponent implements OnInit {
     this.applicationService.getApplicationsByBoard(this.board?.id).subscribe({
       next: (applications) => {
         this.organizeApplicationsByStatus(applications);
+        this.filteredColumns.set([...this.columns()]);
       },
       error: (err) => {
         console.error('Error al cargar las postulaciones:', err);
@@ -243,6 +249,7 @@ export class BoardDetailComponent implements OnInit {
           }));
 
           this.columns.set(updatedColumns);
+          this.filteredColumns.set(this.columns());
         },
         error: (err) => {
           console.error('Error al eliminar la postulación:', err);
@@ -325,5 +332,29 @@ export class BoardDetailComponent implements OnInit {
 
   goBack() {
     return this.router.navigate(['/tableros']);
+  }
+
+
+
+
+  /**
+   * FILTER SEARCH
+  */
+  filterApplications(searchTerm: string) {
+    if (!searchTerm) {
+      this.filteredColumns.set([...this.columns()]);
+      return;
+    }
+
+    const filtered = this.columns().map((column) => ({
+      ...column,
+      applications: column.applications.filter(
+        (app) =>
+          app.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          app.company.toLowerCase().includes(searchTerm.toLowerCase())
+      ),
+    }));
+
+    this.filteredColumns.set(filtered);
   }
 }
