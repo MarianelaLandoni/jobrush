@@ -1,18 +1,7 @@
 <section class="board">
 
-  <header class="board__top">
-    <div class="board__top-left">
-      <div class="board__top-left-title">
-        <app-button class="board__top-left-title-arrow" [iconButton]="true" iconSrc="/icons/arrow-back.svg"
-          iconAlt="Ir hacia atrás" (click)="goBack()"></app-button>
-        <h2 class="board__top-left-title">{{board?.name}}</h2>
-      </div>
-      <app-search (searchEvent)="filterApplications($event)"></app-search>
-    </div>
-
-    <app-button text="Eliminar tablero" [isSmall]="true" [isOutlinePrimary]="true" [isLeftIcon]="true"
-      leftIconSrc="/icons/delete-primary.svg" (click)="openDeleteBoardModal(board.id, $event)"></app-button>
-  </header>
+  <app-header-board [board]="board" (gobackEvent)="goBack()" (searchEvent)="filterApplications($event)"
+    (deleteEvent)="openDeleteBoardModal(board.id, $event)"></app-header-board>
 
   @if(!isLoading()){
   <section cdkDropListGroup class="board__group">

@@ -23,6 +23,7 @@ import { ApplicationDetailComponent } from '../applications/application-detail/a
 import { SpinnerService } from 'core/services/spinner-service/spinner.service';
 import { SearchComponent } from 'shared/components/search/search.component';
 import { OverflowMenuComponent } from 'shared/components/overflow-menu/overflow-menu.component';
+import { HeaderBoardComponent } from 'shared/components/headers/header-board/header-board.component';
 
 @Component({
   selector: 'app-board-detail',
@@ -34,7 +35,8 @@ import { OverflowMenuComponent } from 'shared/components/overflow-menu/overflow-
     CdkDragPlaceholder,
     ButtonComponent,
     SearchComponent,
-    OverflowMenuComponent
+    OverflowMenuComponent,
+    HeaderBoardComponent
   ],
   templateUrl: './board-detail.component.html',
   styleUrl: './board-detail.component.scss',
