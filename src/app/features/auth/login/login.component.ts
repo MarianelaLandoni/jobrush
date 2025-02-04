@@ -42,28 +42,14 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
+
         next: (response) => {
           localStorage.setItem('token-user', response.token);
           this.router.navigate(['/inicio']);
         },
         error: (err) => {
-          switch (err.status) {
-            case 401:
-              this.errorMsg =
-                'Email o contraseña incorrectos. Prueba otra vez.';
-              break;
-            case 404:
-              this.errorMsg =
-                'Usuario no encontrado. Comprueba que el correo está bien.';
-              break;
-            case 500:
-              this.errorMsg =
-                'Error del servidor. Prueba más tarde, por favor.';
-              break;
-            default:
-              this.errorMsg = 'Ha ocurrido un error';
-          }
           this.showErrorMsg = true;
+          this.errorMsg =  err.error?.msg || 'Ha ocurrido un error. Inténtalo de nuevo más tarde.';
         },
       });
     } else {

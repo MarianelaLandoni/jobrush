@@ -33,7 +33,7 @@
   &__error-msg {
     font-size: 0.75rem;
     font-weight: 500;
-    color: red;
+    color: var(--error);
   }
 
   &__button {
@@ -48,6 +48,7 @@
     &--link{
       cursor: pointer;
 
+      &:focus,
       &:hover{
         color: var(--primary);
         text-decoration: underline;
