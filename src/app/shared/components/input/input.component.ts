@@ -1,16 +1,16 @@
-import { NgClass, NgIf } from '@angular/common';
-import { Component, forwardRef, input, Input, signal } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, forwardRef, Input, signal } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass, ButtonComponent],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
   providers: [
