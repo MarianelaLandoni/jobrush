@@ -9,26 +9,27 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--dark-line);
   border-radius: 8px;
   padding: 4px 8px;
 
 
   &__input{
     color: var(--dark-text);
-    font-size: 1rem;
+    font-size: 0.875rem;
     caret-color: var(--primary);
   }
 
   &:focus-within {
     border: 1px solid var(--primary);
+    background-color: var(--white);
   }
 }
 
 
 input::placeholder{
   color: var(--placeholder);
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 
