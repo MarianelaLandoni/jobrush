@@ -18,6 +18,8 @@
   &__options {
     width: 100%;
     min-width: 160px;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 36px;
     right: 0;
