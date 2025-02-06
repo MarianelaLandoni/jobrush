@@ -9,6 +9,7 @@
   --bg-disabled: #757575;
 
   --line: #d1d5db;
+  --dark-line: #b2b6ba;
   --title: #0d131f;
   --dark-text: #202121;
   --text-dark-medium: #535053;
@@ -42,7 +43,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   font-family: 'Inter', sans-serif;
@@ -50,7 +52,9 @@ html, body {
   background-color: var(--background);
 }
 
-ul, ol, li {
+ul,
+ol,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -62,12 +66,14 @@ a {
   color: inherit;
 }
 
-input, button, textarea {
+input,
+button,
+textarea {
   font: inherit;
   border: none;
 }
 
-input{
+input {
   -webkit-appearance: none;
   border: none;
   background-color: transparent;
@@ -76,7 +82,7 @@ input{
   box-shadow: none;
 }
 
-textarea{
+textarea {
   outline: none;
 }
 
@@ -88,4 +94,3 @@ button {
 button:focus-visible {
   border: none;
 }
-
