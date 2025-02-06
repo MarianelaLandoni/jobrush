@@ -17,7 +17,8 @@
   &:hover{
     background: var(--primary-dark-hover);
   }
-
+  
+  &:focus,
   &:active {
     box-shadow: 0 0 0 3px var(--btn-focus);
     transform: scale(1.02);
@@ -38,9 +39,9 @@
     background: transparent;
   }
 
-  // &:focus{
-  //   border: 1px solid var(--primary-dark-hover);
-  // }
+  &:focus{
+    border: 1px solid var(--primary-dark-hover);
+  }
 }
 
 .btn--disabled {
@@ -64,7 +65,7 @@
     background: var(--primary-dark-hover);
   }
 
-  //&:focus,
+  &:focus,
   &:active {
     box-shadow: 0 0 0 3px var(--btn-focus);
     transform: scale(1.02);
@@ -97,9 +98,9 @@
     transform: scale(1.02);
   }
 
-  // &:focus {
-  //   box-shadow: none;
-  // }
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 .btn--warning {
@@ -114,7 +115,7 @@
     transform: scale(1.02);
   }
 
-  // &:focus {
-  //   box-shadow: none;
-  // }
+  &:focus {
+    box-shadow: none;
+  }
 }
